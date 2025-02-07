@@ -1,6 +1,8 @@
 #!/bin/bash
 
-# REPLACEMENT_MIRROR="ftp.nl.debian.org"
+# This can be set to "base", "xfce", "lxde", "gnome"
+REPLACEMENT_DESKTOP_ENVIORMENT="base"
+# Replace with mirror from https://www.debian.org/mirror/list (optional)
 REPLACEMENT_MIRROR="deb.debian.org"
 
 if [ ! -f "debian/ubuntu-build-service/bookworm-base-arm64/configure" ]; then
@@ -35,7 +37,7 @@ export RK_DEBIAN_MIRROR=$REPLACEMENT_MIRROR
 
 # remove existing simlink for debian/ubuntu-build-service/bookworm-desktop-arm64 and then simlink it to bookworm-base-arm64
 sudo rm -f debian/ubuntu-build-service/bookworm-desktop-arm64
-sudo ln -s bookworm-base-arm64 debian/ubuntu-build-service/bookworm-desktop-arm64
+sudo ln -s bookworm-$REPLACEMENT_DESKTOP_ENVIORMENT-arm64 debian/ubuntu-build-service/bookworm-desktop-arm64
 
 # Create expect script for handling all build.sh prompts
 cat >build_commands.exp <<'EXPECT_EOF'
