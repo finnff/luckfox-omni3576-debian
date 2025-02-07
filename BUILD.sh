@@ -55,6 +55,15 @@ ln -s bookworm-base-arm64 debian/ubuntu-build-service/bookworm-desktop-arm64
 # remove the sudo -u part of export KMAKE="sudo -u $RK_OWNER_UID $KMAKE" part so the command becomes      export KMAKE="$KMAKE" in the device/rockchip/common/scripts/kernel-helper
 sed -i 's/export KMAKE="sudo -u #$RK_OWNER_UID $KMAKE"/export KMAKE="$KMAKE"/' device/rockchip/common/scripts/kernel-helper
 
+# Load the ./DOCKERKERNEL file as kernel config to ensure we have the modules running docker
+cd kernel-6.1 || exit
+cp DOCKERKERNEL .config
+# Validate and update the configuration
+make ARCH=arm64 olddefconfig
+# Build the kernel using the custom config
+cd ..
+./build.sh kernel
+
 export FORCE_UNSAFE_CONFIGURE=1
 
 ./build.sh
