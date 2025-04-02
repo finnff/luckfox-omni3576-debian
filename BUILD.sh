@@ -3,7 +3,9 @@
 # This can be set to "base", "xfce", "lxde", "gnome"
 REPLACEMENT_DESKTOP_ENVIORMENT="base"
 # Replace with mirror from https://www.debian.org/mirror/list (optional)
-REPLACEMENT_MIRROR="deb.debian.org"
+#REPLACEMENT_MIRROR="deb.debian.org"
+
+REPLACEMENT_MIRROR="ftp.nl.debian.org"
 
 if [ ! -f "debian/ubuntu-build-service/bookworm-base-arm64/configure" ]; then
     # Setup live-build from source
