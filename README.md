@@ -50,7 +50,6 @@ You will find the final image at:
 $ ls -lh output/update/Image/update.img   
 -rw-r--r-- 1 user user 3.5G Feb  7 06:30 output/update/Image/update.img
 ```
-```
 
 
 ## Flashing to eMMC  
